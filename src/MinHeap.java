@@ -60,19 +60,18 @@ public class MinHeap<T extends Comparable<? super T>> {
             // add data at size
             size ++;
             backingArray[size] = data;
-            heapify(backingArray);
+            upHeap(backingArray);
         }
     }
 
     // Helper method
-    private void heapify(T[] backingArray) {
+    private void upHeap(T[] backingArray) {
         /**
          * Start at index size/2
          * begin down heap -> data from parent is compared to the children
          * (Minheap, so smaller data must be at the top)
          * if child is smaller than parent, swap data of child and parent.
-         * decrement index.
-         * keep decrementing till you are at the index 1, then terminate.
+         * keep index/2 till you are at the index 1, then terminate.
          */
 
         int index = size;
@@ -87,7 +86,6 @@ public class MinHeap<T extends Comparable<? super T>> {
             } else {
                 break;
             }
-
         }
     }
 
@@ -103,7 +101,30 @@ public class MinHeap<T extends Comparable<? super T>> {
      */
     public T remove() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        /**
+         * Store data @ root
+         * copy data in last index to the root
+         * decrement size
+         * begin down heaping (compare the larger child & swap if the child is smaller)
+         * Left child = 2*n
+         * Right child = 2*n + 1
+         * Parent = n/2
+         */
+
+        if(size == 0)
+            throw new NoSuchElementException("Can't remove data from an empty list!");
+        else{
+            T root = backingArray[1];
+            backingArray[1] = backingArray[size];
+            backingArray[size] = null;
+            size --;
+
+
+
         return null;
+    }
+
+
     }
 
     /**
