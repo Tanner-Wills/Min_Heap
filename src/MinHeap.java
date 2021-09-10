@@ -40,6 +40,55 @@ public class MinHeap<T extends Comparable<? super T>> {
      */
     public void add(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        //Minheap -> smallest value at the top
+        if(data == null)
+            throw new IllegalArgumentException("Can't add null data to the heap!");
+
+        // if array is empty
+        else if(size == 0) {
+            backingArray[1] = data;
+            size++;
+
+        } else {
+            // if array needs to be resized
+            if (size + 1 > backingArray.length) {
+                T[] resizeArray = (T[]) new Comparable[backingArray.length * 2];
+                for (int i = 1; i < size; i++)
+                    resizeArray[i] = backingArray[i];
+                backingArray = resizeArray;
+            }
+            // add data at size
+            size ++;
+            backingArray[size] = data;
+            heapify(backingArray);
+        }
+    }
+
+    // Helper method
+    private void heapify(T[] backingArray) {
+        /**
+         * Start at index size/2
+         * begin down heap -> data from parent is compared to the children
+         * (Minheap, so smaller data must be at the top)
+         * if child is smaller than parent, swap data of child and parent.
+         * decrement index.
+         * keep decrementing till you are at the index 1, then terminate.
+         */
+
+        int index = size;
+        T placeHolder = backingArray[index];
+
+        while(index > 1){
+            if (placeHolder.compareTo(backingArray[index / 2]) < 0) {
+                backingArray[index] = backingArray[index / 2];
+                backingArray[index / 2] = placeHolder;
+                placeHolder = backingArray[index/2];
+                index = index/2;
+            } else {
+                break;
+            }
+
+        }
     }
 
     /**
@@ -54,6 +103,7 @@ public class MinHeap<T extends Comparable<? super T>> {
      */
     public T remove() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        return null;
     }
 
     /**
