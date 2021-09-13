@@ -18,15 +18,27 @@ public class TestMinHeap {
         heapy.add(6);
         heapy.add(8);
 
+
         heapy.add(9);
         heapy.add(10);
-        System.out.println(Arrays.toString(heapy.getBackingArray()));
 
-
+        heapy.add(14);
         System.out.println(heapy.size());
+        heapy.add(13);
 
-        heapy.remove();
+
+        heapy.add(15);
+
+
+
+
         System.out.println(Arrays.toString(heapy.getBackingArray()));
+
+
+        //System.out.println(heapy.getBackingArray().length);
+
+        //heapy.remove();
+        //System.out.println(Arrays.toString(heapy.getBackingArray()));
 
     }
 }
