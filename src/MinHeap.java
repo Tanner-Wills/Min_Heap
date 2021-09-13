@@ -118,12 +118,57 @@ public class MinHeap<T extends Comparable<? super T>> {
             backingArray[1] = backingArray[size];
             backingArray[size] = null;
             size --;
-            downHeap(backingArray);
+            int n = 1;
+            //downHeapIterate(backingArray);
+            backingArray = downHeapRecursion(backingArray, n);
             return oldRoot;
         }
     }
 
-    private void downHeap(T[] backingArray){
+    private T[] downHeapRecursion(T[] backingArray, int n){
+        T pointerDown = backingArray[n];
+
+        // base case
+        if(2*n > size){
+            return backingArray;
+        }
+
+        else{
+            // if both children exist
+            if(2*n <= size && 2*n + 1 <= size){
+
+                // if left child is smaller
+                if(backingArray[2*n].compareTo(backingArray[2*n + 1]) < 0){
+                    System.out.println("N = "+ n);
+                    System.out.println("left child, swap " + backingArray[n] + " for " + backingArray[2*n ] );
+                    backingArray[n] = backingArray[2*n];
+                    backingArray[2*n] = pointerDown;
+                    n = 2*n;
+                }
+                // if right child is smaller
+                else {
+                    System.out.println("N = "+ n);
+                    System.out.println("right child, swap " + backingArray[n] + " for " + backingArray[2*n + 1] );
+                    backingArray[n] = backingArray[2*n + 1];
+                    backingArray[2*n + 1] = pointerDown;
+                    n = 2*n + 1;
+                }
+            }
+            // if only left child exists
+            else if(2*n <= size){
+                backingArray[n] = backingArray[2*n];
+                backingArray[2*n] = pointerDown;
+                n = 2*n;
+            }
+        }
+
+        return downHeapRecursion(backingArray,n);
+    }
+
+
+
+
+    private void downHeapIterate(T[] backingArray){
         int n = 1;
         T pointerDown = backingArray[1];
 
